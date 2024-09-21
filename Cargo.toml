@@ -1,5 +1,5 @@
 [package]
-name = "clean-architecture-simple-example"
+name = "clean-architecture-rust-example"
 version = "0.1.0"
 edition = "2021"
 
