@@ -1,4 +1,6 @@
-use crate::application_business_rules::usecase;
+// mod application_business_rules;
+
+// use crate::application_business_rules::usecase;
 use axum::{http::StatusCode, Json};
 use serde::{Deserialize, Serialize};
 
@@ -8,9 +10,9 @@ pub struct CreateUser {
     pub username: String,
 }
 
-pub struct StudentHandler<'a> {
-    student_usecase: usecase::StudentUsecase<'a>,
-}
+// pub struct StudentHandler<'a> {
+//     student_usecase: usecase::StudentUsecase<'a>,
+// }
 
 // the output to our `create_user` handler
 #[derive(Serialize)]
