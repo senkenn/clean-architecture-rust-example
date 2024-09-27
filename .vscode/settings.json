@@ -1,4 +1,7 @@
 {
   "editor.formatOnSave": true,
-  "editor.tabSize": 4
+  "editor.tabSize": 4,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.rust": "explicit"
+  }
 }

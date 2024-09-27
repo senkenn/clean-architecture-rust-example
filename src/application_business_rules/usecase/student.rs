@@ -1,17 +1,15 @@
 pub struct StudentUsecase {
     // Define the fields and methods for StudentUsecase
     pub id: u64,
+    pub name: String,
 }
 
-impl<'a> StudentUsecase {
-    pub fn new(field: &'a str) -> Self {
-        StudentUsecase { field }
-    }
-
-    pub fn create_user(&self, name: String) -> User {
-        User {
-            id: 1, // In a real application, this would be generated or retrieved.
-            name,
-        }
+impl StudentUsecase {
+    pub fn create_student(&self, id: u64, name: String) {
+        // User {
+        //     id: 1, // In a real application, this would be generated or retrieved.
+        //     name,
+        // }
+        println!("Student created: {}", self.name);
     }
 }
