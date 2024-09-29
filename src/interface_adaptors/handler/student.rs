@@ -1,10 +1,12 @@
+use std::sync::Arc;
+
 use crate::application_business_rules::usecase::student::StudentUsecase;
 use axum::{http::StatusCode, Json};
-use serde::{Deserialize, Serialize};
+use serde::Deserialize;
 
 // the input to our `create_user` handler
 #[derive(Deserialize)]
-struct CreateUser {
+pub struct CreateUser {
     id: u64,
     name: String,
 }
@@ -18,7 +20,10 @@ impl StudentHandler {
         StudentHandler { usecase }
     }
 
-    pub(crate) async fn create_student(
+    pub async fn create_student(
+        // Use Arc<Self> to allow shared ownership
+        self: Arc<Self>,
+
         // this argument tells axum to parse the request body
         // as JSON into a `CreateUser` type
         Json(payload): Json<CreateUser>,

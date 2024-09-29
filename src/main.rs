@@ -38,7 +38,13 @@ async fn main() {
         // `GET /` goes to `root`
         .route("/", get(root))
         // `POST /users` goes to `create_user`
-        .route("/users", post(handler.create_student));
+        .route(
+            "/users",
+            post({
+                let handler = Arc::clone(&handler);
+                move |payload| handler.create_student(payload)
+            }),
+        );
 
     // run our app with hyper, listening globally on port 8080
     let listener = tokio::net::TcpListener::bind("0.0.0.0:8080").await.unwrap();
