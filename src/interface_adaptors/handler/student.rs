@@ -7,16 +7,16 @@ use serde::Deserialize;
 // the input to our `create_user` handler
 #[derive(Deserialize)]
 pub struct CreateUser {
-    id: u64,
-    name: String,
+    pub id: u64,
+    pub name: String,
 }
 
 pub struct StudentHandler {
-    pub usecase: StudentUsecase,
+    pub usecase: Arc<StudentUsecase>,
 }
 
 impl StudentHandler {
-    pub fn new(usecase: StudentUsecase) -> Self {
+    pub fn new(usecase: Arc<StudentUsecase>) -> Self {
         StudentHandler { usecase }
     }
 

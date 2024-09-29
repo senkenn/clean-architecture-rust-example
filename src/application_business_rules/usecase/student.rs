@@ -1,15 +1,20 @@
+use std::sync::Arc;
+
+use crate::enterprise_business_rules::domain::entity;
+use crate::enterprise_business_rules::domain::repository_interface::student::IStudentRepository;
+
 pub struct StudentUsecase {
-    // Define the fields and methods for StudentUsecase
-    pub id: u64,
-    pub name: String,
+    pub repo: Arc<dyn IStudentRepository>,
 }
 
 impl StudentUsecase {
+    pub fn new(repo: Arc<dyn IStudentRepository>) -> Self {
+        StudentUsecase { repo }
+    }
+
     pub fn create_student(&self, id: u64, name: String) {
-        // User {
-        //     id: 1, // In a real application, this would be generated or retrieved.
-        //     name,
-        // }
-        println!("Student created: {}", self.name);
+        println!("Student created: {}", name.clone());
+        let student = entity::student::Student { id, name };
+        self.repo.save(student);
     }
 }
