@@ -24,7 +24,6 @@ use interface_adaptors::{
 
 use axum::{
     extract::{Json, State},
-    handler::Handler,
     http::StatusCode,
     routing::{get, post},
     Router,

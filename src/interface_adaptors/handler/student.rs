@@ -1,3 +1,4 @@
+// src/interface_adaptors/handler/student.rs
 use std::sync::Arc;
 
 use crate::application_business_rules::usecase::student::StudentUsecase;
@@ -28,7 +29,11 @@ impl StudentHandler {
         // as JSON into a `CreateUser` type
         Json(payload): Json<CreateUser>,
     ) -> StatusCode {
-        self.usecase.create_student(payload.id, payload.name);
+        let student = crate::enterprise_business_rules::domain::entity::student::Student {
+            id: payload.id,
+            name: payload.name,
+        };
+        self.usecase.clone().create_student(student).unwrap();
 
         // this will be converted into a JSON response
         // with a status code of `201 Created`
